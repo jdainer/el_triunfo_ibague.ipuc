@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
@@ -88,7 +89,7 @@
                         <i class="fa-regular fa-calendar-days"></i>
                         <span>Agenda Virtual</span>
                     </a>
-                    <!-- Botón de Acceso Administrador -->
+                    <!-- B Acceso Administrador -->
                     <button @click="openAdminLoginModal()" class="text-xs px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5" title="Panel Administrador">
                         <i class="fa-solid fa-lock text-gold-400"></i>
                         <span x-text="isAdmin ? 'Modo Admin (Activo)' : 'Admin'"></span>
@@ -136,7 +137,7 @@
                             </svg> Cl. 68 #35-1, sector ambala parte alta 
                         </span>
                         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-serif leading-tight">
-                            programas a realizar en el 2027 <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-amber-200">organización</span>
+                            programas a realizar en el 2027 <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-amber-200"></span>
                         </h1>
                         <p class="text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
                          Y todo lo que hagáis, sea de palabra, o de hecho, hacedlo todo en el nombre del Señor Jesús, dando gracias a Dios. Colosenses 3:17
@@ -597,18 +598,30 @@
                 },
 
                 loadEvents() {
-                    const stored = localStorage.getItem('ipuc_agenda_2027_events');
-                    if (stored) {
-                        try { this.events = JSON.parse(stored); } catch (e) { this.events = []; }
-                    } else {
-                        // Eventos iniciales de ejemplo para 2027
-                        this.events = [
-                            { id: '1', title: 'Culto de Apertura de Año', date: '2027-01-01', time: '19:00', category: 'Institucional', description: 'Gran servicio especial de acción de gracias.' },
-                            { id: '2', title: 'Santa Cena General', date: '2027-02-14', time: '10:00', category: 'Institucional', description: 'Celebración de la Cena del Señor.' }
-                        ];
-                        this.saveEventsToStorage();
-                    }
-                },
+    // Intentamos cargar primero desde el archivo eventos.json del servidor
+    fetch('eventos.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No se pudo cargar el archivo eventos.json');
+            }
+            return response.json();
+        })
+        .then(data => {
+            this.events = data;
+            this.renderCalendar();
+        })
+        .catch(error => {
+            console.warn('Cargando desde localStorage como respaldo:', error);
+            // Si hay algún problema leyendo el JSON externo, recurre al almacenamiento local
+            const stored = localStorage.getItem('ipuc_agenda_2027_events');
+            if (stored) {
+                try { this.events = JSON.parse(stored); } catch (e) { this.events = []; }
+            } else {
+                this.events = [];
+            }
+            this.renderCalendar();
+        });
+},
 
                 saveEventsToStorage() {
                     localStorage.setItem('ipuc_agenda_2027_events', JSON.stringify(this.events));
