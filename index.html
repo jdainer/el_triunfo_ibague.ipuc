@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda Virtual</title>
+    <title>Comités Año 2027 - IPUC Octava Sede</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js para la reactividad -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- FontAwesome para Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter y Playfair Display -->
+    <!-- Google Fonts -->
+     <!-- PWA Web App Manifest -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0B192C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IPUC 8 Sede">
+<link rel="apple-touch-icon" href="logo1.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -27,8 +34,8 @@
                         },
                         gold: {
                             400: 'rgba(255, 255, 255, 0.85)',
-                            500: 'rgba(255, 255, 255, 0.85)',
-                            600: '#f1TYf1f1',
+                            500: '#f1f1f1',
+                            600: '#d97706',
                         }
                     },
                     fontFamily: {
@@ -41,393 +48,97 @@
     </script>
     <style>
         [x-cloak] { display: none !important; }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen" x-data="appData()" x-init="initApp()">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen" x-data="comitesData()">
 
-    <!-- HEADER / NAVIGATION -->
+    <!-- HEADER / NAVEGACIÓN -->
     <header class="sticky top-0 z-40 w-full bg-navy-900/95 text-white backdrop-blur border-b border-slate-800 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
-                <a href="#inicio" class="flex items-center space-x-3 group">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-gold-500 to-amber-300 flex items-center justify-center text-navy-900 font-bold text-xl shadow-lg shadow-gold-500/20 group-hover:scale-105 transition-transform overflow-hidden">
-                        <img src="logo1.png" alt="Logo" class="w-full h-full object-cover">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-gold-500 to-amber-300 flex items-center justify-center text-navy-900 font-bold text-xl shadow-lg overflow-hidden">
+                        <img src="logo1.png" alt="Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/40';">
                     </div>
                     <div>
-                        <span class="text-xl font-bold tracking-tight text-white block">IPUC <span class="text-gold-400 font-light">OCTAVA SEDE</span></span>
+                        <span class="text-xl font-bold tracking-tight text-white block">IPUC <span class="text-amber-400 font-light">OCTAVA SEDE</span></span>
                         <span class="text-[10px] text-slate-400 uppercase tracking-widest block -mt-1">BARRIO EL TRIUNFO IBAGUE TOLIMA</span>
                     </div>
                 </a>
 
                 <!-- Desktop Nav Navigation -->
                 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                    <a href="comites.html" class="text-slate-300 hover:text-gold-400 transition-colors">comites 2027</a>
-                    <a href="#nosotros" class="text-slate-300 hover:text-gold-400 transition-colors">Nosotros</a>
-                    <a href="#servicios" class="text-slate-300 hover:text-gold-400 transition-colors">Servicios</a>
-                    <a href="#agenda" class="px-4 py-2 rounded-full bg-gold-500/10 text-gold-400 border border-gold-500/30 hover:bg-gold-500 hover:text-navy-900 transition-all font-semibold flex items-center space-x-2">
-                        <i class="fa-regular fa-calendar-days"></i>
-                        <span>Agenda Virtual</span>
+                    <a href="index.html" class="text-slate-300 hover:text-amber-400 transition-colors">Inicio</a>
+                    <a href="index.html#nosotros" class="text-slate-300 hover:text-amber-400 transition-colors">Nosotros</a>
+                    <a href="index.html#servicios" class="text-slate-300 hover:text-amber-400 transition-colors">Servicios</a>
+                    <a href="index.html#agenda" class="text-slate-300 hover:text-amber-400 transition-colors">Agenda Virtual</a>
+                    <a href="comites.html" class="px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 font-semibold flex items-center space-x-2">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Comités 2027</span>
                     </a>
-                    <!-- Botón de Acceso Administrador -->
-                    <button @click="openAdminLoginModal()" class="text-xs px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5" title="Panel Administrador">
-                        <i class="fa-solid fa-lock text-gold-400"></i>
-                        <span x-text="isAdmin ? 'Modo Admin (Activo)' : 'Admin'"></span>
-                    </button>
                 </nav>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center gap-2">
-                    <button @click="openAdminLoginModal()" class="p-2 text-gold-400" title="Admin">
-                        <i class="fa-solid fa-lock"></i>
-                    </button>
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-slate-300 hover:text-white focus:outline-none p-2">
-                        <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark text-2xl' : 'fa-bars text-xl'"></i>
-                    </button>
-                </div>
             </div>
-        </div>
-
-        <!-- Mobile Navigation Drawer -->
-        <div x-show="mobileMenuOpen" x-cloak x-transition class="md:hidden bg-navy-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
-            <a href="comites.html" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">comites 2027</a>
-            <a href="#nosotros" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Nosotros</a>
-            <a href="#servicios" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Servicios</a>
-            <a href="#agenda" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-gold-400 bg-gold-500/10 border border-gold-500/20">Agenda Virtual</a>
-            <button @click="mobileMenuOpen = false; openAdminLoginModal()" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 flex items-center gap-2">
-                <i class="fa-solid fa-lock text-gold-400"></i> Panel Administrador
-            </button>
         </div>
     </header>
 
     <main class="flex-grow">
-        <!-- 1. HERO SECTION -->
-        <section id="inicio" class="relative bg-navy-900 text-white pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
+        <!-- HERO / BANNER PRINCIPAL -->
+        <section class="relative bg-navy-900 text-white py-16 lg:py-20 overflow-hidden border-b border-slate-800">
             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F3C623_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <div class="absolute -top-40 -right-40 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl"></div>
-            <div class="absolute top-1/2 -left-40 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                        
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-serif leading-tight">
-                           Bienvenido a nuestra  <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-amber-200">APP</span>
-                        </h1>
-
-                        <h5 class="text-1xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight font-serif leading-tight">
-                          aqui  encuentras la programacion para el año   <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-amber-200">2027</span>
-                        </h5>
-                        <p class="text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-                         mirad ¡Ved qué bueno y agradable esque los hermanos vivan unidos y en armonia! salmo 133:1
-                        </p>
-                        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <a href="#agenda" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-navy-900 font-bold hover:shadow-lg hover:shadow-gold-500/25 transition-all transform hover:-translate-y-0.5">
-                                <i class="fa-solid fa-calendar-check mr-2"></i> Acceder a la Agenda
-                            </a>
-                            <a href="#nosotros" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 text-slate-200 font-medium transition-all">
-                                Conocer Más
-                            </a>
-                        </div>
-                    </div>
-                    <div class="lg:col-span-5 relative">
-                        <div class="relative mx-auto max-w-md lg:max-w-none">
-                            <div class="relative rounded-2xl overflow-hidden border border-slate-700/60 shadow-2xl shadow-navy-950">
-                                <img src="2.png" alt="Edificio Institucional" class="w-full h-80 sm:h-96 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x600/0B192C/FFF?text=IPUC';">
-                                <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold tracking-wider uppercase mb-4">
+                    <i class="fa-solid fa-people-group"></i> Lideres y Servidores
+                </span>
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight font-serif">
+                    Comités <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500">Año 2027</span>
+                </h1>
+                <p class="text-slate-300 max-w-2xl mx-auto mt-4 text-base sm:text-lg font-light leading-relaxed">
+                    Equipos de trabajo, servidores y comités organizados para el desarrollo  de nuestra congregación en este nuevo año.
+                </p>
             </div>
         </section>
 
-        <!-- 2. NOSOTROS SECTION -->
-        <section id="nosotros" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h3 class="text-xs uppercase tracking-widest text-gold-600 font-semibold mb-2">Sobre Nosotros</h3>
-                    <p class="text-3xl sm:text-4xl font-bold font-serif text-navy-800">Seguimos con los ojos puestos en Jesús el Autor y Consumador de la fe</p>
-                    <div class="w-16 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Misión -->
-                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-                        <div>
-                            <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                    <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
-                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8"/>
-                                    <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-navy-800 mb-3">Misión</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                • Predicación y evangelización: Anunciar a Jesucristo como el único Dios verdadero y Salvador.<br>
-                                • Hacer discípulos: Bautizar a los creyentes y enseñarles a guardar los mandamientos de Jesús.<br>
-                                • Enseñanza doctrinal: Instruir a la feligresía en la doctrina apostólica.<br>
-                                • Formación integral: Preparar a ministros y creyentes para presentar una iglesia santa.<br>
-                                • Expansión misionera: Consolidar la obra en Colombia y en el campo extranjero.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Visión -->
-                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-                        <div>
-                            <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-navy-800 mb-3">Visión</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                • Expansión y crecimiento: Ser reconocida por la propagación del evangelio.<br>
-                                • Unidad espiritual: Conservar la unidad de la fe y del espíritu.<br>
-                                • Formación de discípulos: Llenos del Espíritu Santo y preparados para toda buena obra.<br>
-                                • Transformación integral: Influir positivamente en el ser humano.<br>
-                                • Capacidad administrativa: Mantener alta eficiencia en todas sus áreas eclesiales.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Valores -->
-                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-                        <div>
-                            <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6zm11.386 3.785-1.806-2.41-.776 2.413zm-3.633.004.961-2.989H4.186l.963 2.989zM5.47 5.495 8 13.366l2.532-7.876zm-1.371-.999-.78-2.422-1.818 2.425zM1.499 5.5l5.113 6.817-2.192-6.82zm7.889 6.817 5.123-6.83H12.93l-2.193 6.832z"/>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-navy-800 mb-3">Valores</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                • La autoridad de la Biblia como regla de fe.<br>
-                                • La Unicidad de Dios manifestado en carne como Jesucristo.<br>
-                                • La Salvación por gracia mediante arrepentimiento y bautismo.<br>
-                                • Santidad, costumbres y principios morales firmes.<br>
-                                • Vida comunitaria, amor al prójimo y apoyo familiar.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. SERVICIOS SECTION -->
-        <section id="servicios" class="py-20 bg-slate-100/70 border-t border-b border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <p class="text-3xl sm:text-4xl font-bold font-serif text-navy-800">Servicios y Áreas de la Iglesia</p>
-                    <div class="w-16 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
-                </div>
-
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
-                        <img src="3.png" alt="Reuniones" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Reuniones';">
-                        <div class="p-6">
-                            <h4 class="font-bold text-lg text-navy-900 mb-2">REUNIONES</h4>
-                            <p class="text-slate-600 text-sm">Celebración de reuniones semanales de adoración, alabanza, predicación y enseñanza bíblica.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
-                        <img src="5.png" alt="Bienestar" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Bienestar';">
-                        <div class="p-6">
-                            <h4 class="font-bold text-lg text-navy-900 mb-2">BIENESTAR FAMILIAR</h4>
-                            <p class="text-slate-600 text-sm">Actividades enfocadas en la edificación, restauración y unidad del núcleo familiar.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
-                        <img src="4.png" alt="Expansión" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Expansion';">
-                        <div class="p-6">
-                            <h4 class="font-bold text-lg text-navy-900 mb-2">EXPANSIÓN</h4>
-                            <p class="text-slate-600 text-sm">Enfocados en el cumplimiento de la misión evangelística y la predicación del evangelio.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. AGENDA VIRTUAL SECTION -->
-        <section id="agenda" class="py-20 bg-slate-900 text-slate-100 relative min-h-screen">
+        <!-- SECCIÓN DE COMITÉS -->
+        <section class="py-16 bg-slate-100/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <!-- Agenda Header -->
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-slate-800 gap-6">
-                    <div>
-                        <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white">Agenda 2027</h2>
-                        <p class="text-slate-400 text-sm mt-1">Consulta la programación oficial de la iglesia para este año.</p>
-                    </div>
-
-                    <!-- Filter / Quick Search Bar & Admin Controls -->
-                    <div class="flex flex-col sm:flex-row items-center gap-3">
-                        <div class="relative w-full sm:w-64">
-                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                            <input type="text" x-model="searchQuery" placeholder="Buscar eventos..." class="w-full bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm text-slate-200 placeholder-slate-400 focus:outline-none focus:border-gold-500 transition">
-                        </div>
-                        
-                        <!-- Botones de Administrador (Solo visibles si isAdmin es true) -->
-                        <template x-if="isAdmin">
-                            <div class="flex gap-2 w-full sm:w-auto">
-                                <button @click="openModalForNewEvent()" class="bg-gradient-to-r from-gold-500 to-amber-500 text-navy-900 font-bold px-4 py-2 rounded-xl text-sm hover:brightness-110 transition flex items-center justify-center gap-2 shadow-lg">
-                                    <i class="fa-solid fa-plus"></i> Nuevo
-                                </button>
-                                <button @click="exportEventsJson()" class="bg-slate-800 border border-slate-700 text-amber-400 hover:bg-slate-700 px-3 py-2 rounded-xl text-sm font-semibold flex items-center gap-1" title="Descargar eventos.json para tu hosting">
-                                    <i class="fa-solid fa-download"></i> JSON
-                                </button>
-                                <button @click="logoutAdmin()" class="bg-rose-500/20 text-rose-300 border border-rose-500/30 px-3 py-2 rounded-xl text-sm" title="Salir de Admin">
-                                    <i class="fa-solid fa-right-from-bracket"></i>
-                                </button>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <!-- Calendar Navigation Controls -->
-                <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 sm:p-6 mb-8 backdrop-blur shadow-xl">
-                    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                        <div class="flex items-center space-x-3 w-full md:w-auto justify-between md:justify-start">
-                            <div class="flex items-center space-x-1">
-                                <button @click="prevMonth()" class="p-2.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 transition">
-                                    <i class="fa-solid fa-chevron-left text-sm"></i>
-                                </button>
-                                <button @click="nextMonth()" class="p-2.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 transition">
-                                    <i class="fa-solid fa-chevron-right text-sm"></i>
-                                </button>
-                            </div>
-
-                            <!-- Dropdown de Meses (Enero a Diciembre) -->
-                            <select x-model.number="currentMonth" @change="renderCalendar()" class="bg-slate-900 text-amber-300 font-bold text-lg rounded-xl border border-slate-700 px-4 py-2 focus:outline-none cursor-pointer">
-                                <template x-for="(monthName, index) in months" :key="index">
-                                    <option :value="index" x-text="monthName"></option>
-                                </template>
-                            </select>
-
-                            <!-- Selector de Año -->
-                            <select x-model.number="currentYear" @change="renderCalendar()" class="bg-slate-900 text-slate-300 font-bold text-lg rounded-xl border border-slate-700 px-3 py-2 focus:outline-none cursor-pointer">
-                                <option value="2027">2027</option>
-                            </select>
-                        </div>
-
-                        <div class="flex items-center gap-4 w-full md:w-auto justify-between">
-                            <span class="text-xs text-slate-400">
-                                Total este mes: <strong class="text-amber-300" x-text="getEventsForCurrentMonthCount()"></strong>
-                            </span>
-                            <button @click="goToToday()" class="px-3.5 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-xs font-semibold text-slate-200 transition flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-day"></i> Hoy
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Main Calendar Grid -->
-                <div class="bg-slate-800/50 border border-slate-700/80 rounded-2xl overflow-hidden shadow-2xl">
-                    <div class="grid grid-cols-7 text-center bg-slate-900/80 border-b border-slate-700 text-xs font-semibold text-slate-400 uppercase tracking-wider py-3">
-                        <div>Dom</div>
-                        <div>Lun</div>
-                        <div>Mar</div>
-                        <div>Mié</div>
-                        <div>Jue</div>
-                        <div>Vie</div>
-                        <div>Sáb</div>
-                    </div>
-
-                    <div class="grid grid-cols-7 auto-rows-fr gap-px bg-slate-700/50">
-                        <template x-for="(day, index) in calendarDays" :key="index">
-                            <div 
-                                @click="handleDayClick(day)"
-                                class="min-h-[100px] sm:min-h-[120px] p-2 bg-slate-800/90 hover:bg-slate-700/60 transition cursor-pointer relative flex flex-col justify-between group"
-                                :class="{
-                                    'opacity-40 bg-slate-900/60': !day.isCurrentMonth,
-                                    'ring-2 ring-amber-400 ring-inset bg-slate-800': day.isToday,
-                                    'bg-slate-800/100': day.isCurrentMonth && !day.isToday
-                                }"
-                            >
-                                <div class="flex justify-between items-center">
-                                    <span 
-                                        class="text-xs sm:text-sm font-semibold rounded-full w-6 h-6 flex items-center justify-center"
-                                        :class="day.isToday ? 'bg-amber-400 text-navy-900 font-bold' : 'text-slate-300'"
-                                        x-text="day.dayNumber">
-                                    </span>
-                                    <!-- Botón rápido en celda solo si es Admin -->
-                                    <template x-if="isAdmin">
-                                        <button 
-                                            @click.stop="openModalForDay(day)" 
-                                            class="opacity-0 group-hover:opacity-100 transition p-1 text-slate-400 hover:text-amber-300 text-xs rounded hover:bg-slate-600"
-                                            title="Agregar evento">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </template>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <template x-for="(comite, index) in comites" :key="index">
+                        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                            
+                            <div>
+                                <!-- Foto del Comité -->
+                                <div class="relative h-64 overflow-hidden bg-slate-900">
+                                    <img :src="comite.imagen" :alt="comite.titulo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80';">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-4 left-4 bg-amber-500 text-navy-900 font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full shadow" x-text="comite.categoria || 'Ministerio'"></span>
                                 </div>
 
-                                <!-- Event Badges List in Cell -->
-                                <div class="mt-2 space-y-1 overflow-y-auto max-h-16 custom-scrollbar">
-                                    <template x-for="event in getEventsForDay(day.dateString)" :key="event.id">
-                                        <div 
-                                            @click.stop="viewOrEditEvent(event)"
-                                            class="text-[11px] px-2 py-1 rounded truncate border flex items-center justify-between transition hover:scale-[1.02]"
-                                            :class="getCategoryClasses(event.category)">
-                                            <span class="truncate font-medium" x-text="event.title"></span>
-                                            <span class="text-[9px] opacity-75 ml-1" x-text="event.time"></span>
-                                        </div>
-                                    </template>
-                                </div>
+                                <!-- Contenido -->
+                                <div class="p-6 sm:p-8">
+                                    <h3 class="text-2xl font-bold font-serif text-navy-900 mb-3" x-text="comite.titulo"></h3>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-6" x-text="comite.descripcion"></p>
 
-                                <div class="mt-1 flex gap-1 justify-center" x-show="getEventsForDay(day.dateString).length > 0">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-
-                <!-- Search Results Section -->
-                <div x-show="searchQuery.trim().length > 0" x-cloak class="mt-8 bg-slate-800 border border-slate-700 rounded-2xl p-6">
-                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-list-check text-amber-400"></i>
-                        Resultados de búsqueda para: "<span x-text="searchQuery" class="text-amber-400"></span>"
-                    </h3>
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <template x-for="event in filteredEvents" :key="event.id">
-                            <div class="bg-slate-900/90 border border-slate-700 p-4 rounded-xl flex flex-col justify-between">
-                                <div>
-                                    <div class="flex items-center justify-between mb-2">
-                                        <span class="text-xs px-2 py-0.5 rounded font-semibold uppercase" :class="getCategoryBadge(event.category)" x-text="event.category"></span>
-                                        <span class="text-xs text-slate-400" x-text="formatDateHuman(event.date)"></span>
+                                    <!-- Lista de Integrantes -->
+                                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                                        <h4 class="text-xs font-bold text-navy-800 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                            <i class="fa-solid fa-user-group text-amber-500"></i> Integrantes
+                                        </h4>
+                                        <ul class="grid grid-cols-2 gap-2 text-sm text-slate-700">
+                                            <template x-for="integrante in comite.integrantes" :key="integrante">
+                                                <li class="flex items-center gap-2">
+                                                    <i class="fa-solid fa-check text-xs text-amber-500"></i>
+                                                    <span x-text="integrante"></span>
+                                                </li>
+                                            </template>
+                                        </ul>
                                     </div>
-                                    <h4 class="font-bold text-slate-200 text-sm mb-1" x-text="event.title"></h4>
-                                    <p class="text-xs text-slate-400 line-clamp-2" x-text="event.description || 'Sin descripción'"></p>
-                                </div>
-                                <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs">
-                                    <span class="text-slate-400"><i class="fa-regular fa-clock mr-1"></i> <span x-text="event.time"></span></span>
-                                    <button @click="viewOrEditEvent(event)" class="text-amber-400 hover:underline font-semibold">
-                                        Ver detalles
-                                    </button>
                                 </div>
                             </div>
-                        </template>
-                    </div>
+
+                        </div>
+                    </template>
                 </div>
 
             </div>
@@ -442,373 +153,57 @@
                 <p class="text-xs text-slate-500 mt-1">Ibagué, Tolima © 2027. Todos los derechos reservados.</p>
             </div>
             <div class="flex space-x-6 text-slate-400">
-                <a href="https://www.facebook.com/IpucTriunfoIbague8" class="hover:text-amber-400 transition"><i class="fa-brands fa-facebook text-lg"></i></a>
-                
+                <a href="#" class="hover:text-amber-400 transition"><i class="fa-brands fa-facebook text-lg"></i></a>
+                <a href="#" class="hover:text-amber-400 transition"><i class="fa-brands fa-youtube text-lg"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL DE ACCESO ADMINISTRADOR (LOGIN) -->
-    <div x-show="showAdminLogin" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div @click="showAdminLogin = false" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity"></div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
-            <div class="inline-block align-bottom bg-slate-900 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full border border-slate-700 p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-lock text-amber-400"></i> Acceso Administrador
-                    </h3>
-                    <button @click="showAdminLogin = false" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <form @submit.prevent="verifyAdminPassword()" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Contraseña de Administrador</label>
-                        <input type="password" x-model="adminPasswordInput" required placeholder="Digite su clave" class="w-full bg-slate-850 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-amber-400">
-                    </div>
-                    <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-navy-900 font-bold text-sm hover:brightness-110 transition">
-                        Entrar al Panel
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL PARA GESTIÓN DE EVENTOS (CREAR / EDITAR - SOLO ADMIN) -->
-    <div x-show="showEventModal" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div @click="closeModal()" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity"></div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
-
-            <div class="inline-block align-bottom bg-slate-900 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-slate-700">
-                <div class="bg-slate-800/80 px-6 py-4 border-b border-slate-700 flex justify-between items-center">
-                    <h3 class="text-lg font-bold text-white" x-text="activeEvent.id ? 'eventos ' : 'Nuevo Evento Institucional'"></h3>
-                    <button @click="closeModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-                </div>
-
-                <!-- Si es admin, ve el formulario editable. Si no, solo ve la información de lectura -->
-                <template x-if="isAdmin">
-                    <form @submit.prevent="saveEvent()" class="p-6 space-y-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Título del Evento</label>
-                            <input type="text" x-model="activeEvent.title" required placeholder="Ej: Culto Especial de Jóvenes" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-amber-400">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Fecha</label>
-                                <input type="date" x-model="activeEvent.date" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-sm focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Hora</label>
-                                <input type="time" x-model="activeEvent.time" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 text-sm focus:outline-none">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Categoría</label>
-                            <select x-model="activeEvent.category" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-slate-100 text-sm focus:outline-none">
-                                <option value="Reunión">culto</option>
-                                <option value="Institucional">Integracion</option>
-                                <option value="Capacitación">Capacitación</option>
-                                <option value="Recordatorio">confraternidad</option>
-                                <option value="Urgente">culto misionero</option>
-                                <option value="Urgente">gavillas</option>
-                                <option value="Urgente">rayos de luz</option>
-                                <option value="Urgente">dia misionero</option>
-                                <option value="Urgente">ofrenda especial</option>
-                                <option value="Urgente">asamblea general</option>
-                                <option value="Urgente">evento importante</option>
-                                <option value="Urgente">escuela dominical</option>
-                                
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Descripción / Notas</label>
-                            <textarea x-model="activeEvent.description" rows="3" placeholder="Detalles..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-slate-100 text-sm focus:outline-none"></textarea>
-                        </div>
-
-                        <div class="pt-4 flex items-center justify-between border-t border-slate-800">
-                            <template x-if="activeEvent.id">
-                                <button type="button" @click="deleteEvent(activeEvent.id)" class="text-rose-400 hover:text-rose-300 text-xs font-bold flex items-center gap-1">
-                                    <i class="fa-solid fa-trash"></i> Eliminar
-                                </button>
-                            </template>
-                            <div class="flex space-x-3 ml-auto">
-                                <button type="button" @click="closeModal()" class="px-4 py-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-xs font-bold">Cancelar</button>
-                                <button type="submit" class="px-5 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-navy-900 text-xs font-bold">Guardar</button>
-                            </div>
-                        </div>
-                    </form>
-                </template>
-
-                <!-- Vista de Solo Lectura para Visitantes -->
-                <template x-if="!isAdmin">
-                    <div class="p-6 space-y-4">
-                        <div>
-                            <span class="text-xs px-2.5 py-1 rounded font-semibold uppercase" :class="getCategoryBadge(activeEvent.category)" x-text="activeEvent.category"></span>
-                            <h4 class="text-xl font-bold text-white mt-2" x-text="activeEvent.title"></h4>
-                        </div>
-                        <div class="flex gap-4 text-xs text-slate-300 bg-slate-800 p-3 rounded-xl border border-slate-700">
-                            <div><i class="fa-regular fa-calendar mr-1 text-amber-400"></i> <span x-text="formatDateHuman(activeEvent.date)"></span></div>
-                            <div><i class="fa-regular fa-clock mr-1 text-amber-400"></i> <span x-text="activeEvent.time"></span></div>
-                        </div>
-                        <p class="text-sm text-slate-300 leading-relaxed" x-text="activeEvent.description || 'Sin descripción adicional para este evento.'"></p>
-                        <div class="pt-4 border-t border-slate-800 text-right">
-                            <button @click="closeModal()" class="px-5 py-2 rounded-xl bg-slate-800 text-slate-200 text-xs font-bold hover:bg-slate-700">Cerrar</button>
-                        </div>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-
-    <!-- NOTIFICATION TOAST -->
-    <div x-show="toast.show" x-cloak x-transition class="fixed bottom-6 right-6 z-50 bg-navy-800 border border-gold-500/40 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3">
-        <i class="fa-solid fa-circle-check text-amber-400 text-lg"></i>
-        <span class="text-sm font-medium" x-text="toast.message"></span>
-    </div>
-
-    <!-- ALPINE LOGIC -->
+    <!-- LÓGICA DE DATOS -->
     <script>
-        function appData() {
+        function comitesData() {
             return {
-                mobileMenuOpen: false,
-                currentYear: 2027,
-                currentMonth: 0,
-                months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                calendarDays: [],
-                events: [],
-                searchQuery: '',
-                isAdmin: false,
-                showAdminLogin: false,
-                adminPasswordInput: '',
-                showEventModal: false,
-                activeEvent: { id: null, title: '', date: '', time: '10:00', category: 'Institucional', description: '' },
-                toast: { show: false, message: '' },
-
-                initApp() {
-                    const today = new Date();
-                    this.currentYear = 2027; // Fijo para el año 2027 solicitado
-                    this.currentMonth = today.getFullYear() === 2027 ? today.getMonth() : 0;
-                    this.loadEvents();
-                    this.renderCalendar();
-                },
-
-                loadEvents() {
-    // Intentamos cargar primero desde el archivo eventos.json del servidor
-    fetch('eventos.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('No se pudo cargar el archivo eventos.json');
-            }
-            return response.json();
-        })
-        .then(data => {
-            this.events = data;
-            this.renderCalendar();
-        })
-        .catch(error => {
-            console.warn('Cargando desde localStorage como respaldo:', error);
-            // Si hay algún problema leyendo el JSON externo, recurre al almacenamiento local
-            const stored = localStorage.getItem('ipuc_agenda_2027_events');
-            if (stored) {
-                try { this.events = JSON.parse(stored); } catch (e) { this.events = []; }
-            } else {
-                this.events = [];
-            }
-            this.renderCalendar();
-        });
-},
-
-                saveEventsToStorage() {
-                    localStorage.setItem('ipuc_agenda_2027_events', JSON.stringify(this.events));
-                },
-
-                openAdminLoginModal() {
-                    if (this.isAdmin) {
-                        this.showToast('Ya se encuentra en Modo Administrador');
-                        return;
+                comites: [
+                    {
+                        titulo: "Comité de Jóvenes",
+                        categoria: "Jóvenes",
+                        imagen: "jovenes.png", // Reemplaza con la ruta de tu foto
+                        descripcion: "Encargados de coordinar las actividades espirituales, campamentos y cultos especiales para la juventud de la iglesia.",
+                        integrantes: ["Carlos", "Pedro", "Juan", "Edwar"]
+                    },
+                    {
+                        titulo: "Comité de Damas Dorcas",
+                        categoria: "Damas",
+                        imagen: "damas.png", // Reemplaza con la ruta de tu foto
+                        descripcion: "Comité dedicado al trabajo de ayuno, oración, obra social y edificación espiritual de las mujeres en la congregación.",
+                        integrantes: ["María", "Elena", "Sofía", "Carmen"]
+                    },
+                    {
+                        titulo: "Comité de Escuela Dominical",
+                        categoria: "Educación",
+                        imagen: "ninos.png", // Reemplaza con la ruta de tu foto
+                        descripcion: "Equipo de maestros dedicados a la enseñanza bíblica y formación infantil de los niños y niñas.",
+                        integrantes: ["Laura", "Andrés", "Beatriz", "David"]
+                    },
+                    {
+                        titulo: "Comité de Alabanza y Música",
+                        categoria: "Música",
+                        imagen: "musica.png", // Reemplaza con la ruta de tu foto
+                        descripcion: "Encargados de dirigir la adoración, la música y la dirección del coro en las reuniones y eventos solemnes.",
+                        integrantes: ["Felipe", "Gabriel", "Mateo", "Camila"]
                     }
-                    this.adminPasswordInput = '';
-                    this.showAdminLogin = true;
-                },
-
-                verifyAdminPassword() {
-                    // Contraseña predeterminada de administrador (cámbiala si lo deseas)
-                    if (this.adminPasswordInput === 'admin2027') {
-                        this.isAdmin = true;
-                        this.showAdminLogin = false;
-                        this.showToast('¡Modo Administrador activado con éxito!');
-                    } else {
-                        alert('Contraseña incorrecta');
-                    }
-                },
-
-                logoutAdmin() {
-                    this.isAdmin = false;
-                    this.showToast('Se ha cerrado la sesión de administrador');
-                },
-
-                exportEventsJson() {
-                    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.events, null, 2));
-                    const downloadAnchor = document.createElement('a');
-                    downloadAnchor.setAttribute("href", dataStr);
-                    downloadAnchor.setAttribute("download", "eventos.json");
-                    document.body.appendChild(downloadAnchor);
-                    downloadAnchor.click();
-                    downloadAnchor.remove();
-                    this.showToast('Archivo eventos.json descargado con éxito');
-                },
-
-                renderCalendar() {
-                    const days = [];
-                    const firstDayOfMonth = new Date(this.currentYear, this.currentMonth, 1);
-                    const lastDayOfMonth = new Date(this.currentYear, this.currentMonth + 1, 0);
-                    const startingDayOfWeek = firstDayOfMonth.getDay();
-                    const totalDaysInMonth = lastDayOfMonth.getDate();
-
-                    const prevMonthLastDay = new Date(this.currentYear, this.currentMonth, 0).getDate();
-                    for (let i = startingDayOfWeek - 1; i >= 0; i--) {
-                        const dayNum = prevMonthLastDay - i;
-                        const m = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
-                        const y = this.currentMonth === 0 ? this.currentYear - 1 : this.currentYear;
-                        days.push({ dayNumber: dayNum, isCurrentMonth: false, dateString: `${y}-${String(m + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`, isToday: false });
-                    }
-
-                    const todayObj = new Date();
-                    const todayStr = `${todayObj.getFullYear()}-${String(todayObj.getMonth() + 1).padStart(2, '0')}-${String(todayObj.getDate()).padStart(2, '0')}`;
-
-                    for (let d = 1; d <= totalDaysInMonth; d++) {
-                        const dateStr = `${this.currentYear}-${String(this.currentMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-                        days.push({ dayNumber: d, isCurrentMonth: true, dateString: dateStr, isToday: dateStr === todayStr });
-                    }
-
-                    const remainingCells = 42 - days.length;
-                    for (let j = 1; j <= remainingCells; j++) {
-                        const m = this.currentMonth === 11 ? 0 : this.currentMonth + 1;
-                        const y = this.currentMonth === 11 ? this.currentYear + 1 : this.currentYear;
-                        days.push({ dayNumber: j, isCurrentMonth: false, dateString: `${y}-${String(m + 1).padStart(2, '0')}-${String(j).padStart(2, '0')}`, isToday: false });
-                    }
-
-                    this.calendarDays = days;
-                },
-
-                prevMonth() {
-                    if (this.currentMonth === 0) { this.currentMonth = 11; this.currentYear--; } else { this.currentMonth--; }
-                    this.renderCalendar();
-                },
-
-                nextMonth() {
-                    if (this.currentMonth === 11) { this.currentMonth = 0; this.currentYear++; } else { this.currentMonth++; }
-                    this.renderCalendar();
-                },
-
-                goToToday() {
-                    const today = new Date();
-                    this.currentYear = 2027;
-                    this.currentMonth = today.getFullYear() === 2027 ? today.getMonth() : 0;
-                    this.renderCalendar();
-                },
-
-                getEventsForDay(dateString) {
-                    return this.events.filter(e => e.date === dateString);
-                },
-
-                getEventsForCurrentMonthCount() {
-                    const prefix = `${this.currentYear}-${String(this.currentMonth + 1).padStart(2, '0')}`;
-                    return this.events.filter(e => e.date.startsWith(prefix)).length;
-                },
-
-                get filteredEvents() {
-                    if (!this.searchQuery.trim()) return [];
-                    const q = this.searchQuery.toLowerCase();
-                    return this.events.filter(e => e.title.toLowerCase().includes(q) || (e.description && e.description.toLowerCase().includes(q)) || e.category.toLowerCase().includes(q));
-                },
-
-                handleDayClick(day) {
-                    const evs = this.getEventsForDay(day.dateString);
-                    if (evs.length > 0) {
-                        this.viewOrEditEvent(evs[0]);
-                    } else if (this.isAdmin) {
-                        this.openModalForDay(day);
-                    }
-                },
-
-                openModalForDay(day) {
-                    if (!this.isAdmin) return;
-                    this.activeEvent = { id: null, title: '', date: day.dateString, time: '10:00', category: 'Institucional', description: '' };
-                    this.showEventModal = true;
-                },
-
-                openModalForNewEvent() {
-                    if (!this.isAdmin) return;
-                    const todayStr = '2027-01-01';
-                    this.activeEvent = { id: null, title: '', date: todayStr, time: '10:00', category: 'Institucional', description: '' };
-                    this.showEventModal = true;
-                },
-
-                viewOrEditEvent(event) {
-                    this.activeEvent = JSON.parse(JSON.stringify(event));
-                    this.showEventModal = true;
-                },
-
-                closeModal() {
-                    this.showEventModal = false;
-                },
-
-                saveEvent() {
-                    if (!this.isAdmin) return;
-                    if (this.activeEvent.id) {
-                        const index = this.events.findIndex(e => e.id === this.activeEvent.id);
-                        if (index !== -1) {
-                            this.events[index] = { ...this.activeEvent };
-                            this.showToast('Evento actualizado correctamente');
-                        }
-                    } else {
-                        const newEv = { ...this.activeEvent, id: Date.now().toString() };
-                        this.events.push(newEv);
-                        this.showToast('Nuevo evento agendado exitosamente');
-                    }
-                    this.saveEventsToStorage();
-                    this.closeModal();
-                },
-
-                deleteEvent(id) {
-                    if (!this.isAdmin) return;
-                    this.events = this.events.filter(e => e.id !== id);
-                    this.saveEventsToStorage();
-                    this.closeModal();
-                    this.showToast('Evento eliminado de la agenda');
-                },
-
-                getCategoryClasses(category) {
-                    switch (category) {
-                        case 'Institucional': return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
-                        case 'Reunión': return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-                        case 'Capacitación': return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
-                        case 'Urgente': return 'bg-rose-500/20 text-rose-300 border-rose-500/30';
-                        default: return 'bg-slate-700 text-slate-300 border-slate-600';
-                    }
-                },
-
-                getCategoryBadge(category) {
-                    return this.getCategoryClasses(category);
-                },
-
-                formatDateHuman(dateStr) {
-                    if (!dateStr) return '';
-                    const parts = dateStr.split('-');
-                    return `${parts[2]}/${parts[1]}/${parts[0]}`;
-                },
-
-                showToast(msg) {
-                    this.toast.message = msg;
-                    this.toast.show = true;
-                    setTimeout(() => { this.toast.show = false; }, 3000);
-                }
+                ]
             }
         }
+        
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Service Worker registrado con éxito', reg))
+        .catch(err => console.warn('Error al registrar Service Worker', err));
+    });
+  }
+
     </script>
 </body>
 </html>
