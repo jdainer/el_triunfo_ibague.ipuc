@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda Virtual</title>
+    <title>Agenda Virtual - IPUC Octava Sede</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine.js para la reactividad -->
@@ -11,17 +11,19 @@
     <!-- FontAwesome para Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Inter y Playfair Display -->
-     <!-- PWA Web App Manifest -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0B192C">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="IPUC 8 Sede">
-<link rel="apple-touch-icon" href="logo1.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- PWA Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0B192C">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="IPUC 8 Sede">
+    <link rel="apple-touch-icon" href="logo1.png">
 
+    <!-- CONFIGURACIÓN UNIFICADA DE TAILWIND -->
     <script>
         tailwind.config = {
             theme: {
@@ -34,25 +36,38 @@
                         },
                         gold: {
                             400: 'rgba(255, 255, 255, 0.85)',
-                            500: 'rgba(255, 255, 255, 0.85)',
-                            600: '#f1TYf1f1',
+                            500: '#f1f1f1',
+                            600: '#d97706',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
+                    },
+                    keyframes: {
+                        rotateBeam: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'rotateBeam 3s linear infinite',
                     }
                 }
             }
         }
     </script>
+
+    <!-- ESTILOS CSS PROFESIONALES -->
     <style>
         [x-cloak] { display: none !important; }
+        
         .glass-panel {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
+        
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
@@ -67,12 +82,27 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+
+        /* Efecto de borde brillante giratorio (Border Beam) para el menú */
+        .glow-border-wrapper {
+            position: relative;
+            border-radius: 9999px;
+            overflow: hidden;
+            padding: 1.5px;
+        }
+        
+        .glow-border-beam {
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 60%, #F3C623 85%, #fff 100%);
+            animation: rotateBeam 3s linear infinite;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen" x-data="appData()" x-init="initApp()">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-40 w-full bg-navy-900/95 text-white backdrop-blur border-b border-slate-800 transition-all duration-300">
+    <!-- HEADER / NAVIGATION (DISEÑO MODERNO Y ELEGANTE) -->
+    <header class="sticky top-0 z-40 w-full bg-navy-900/95 text-white backdrop-blur border-b border-slate-800 transition-all duration-300 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
@@ -81,30 +111,36 @@
                         <img src="logo1.png" alt="Logo" class="w-full h-full object-cover">
                     </div>
                     <div>
-                        <span class="text-xl font-bold tracking-tight text-white block">IPUC <span class="text-gold-400 font-light">OCTAVA SEDE</span></span>
+                        <span class="text-xl font-bold tracking-tight text-white block">IPUC <span class="text-amber-400 font-light">OCTAVA SEDE</span></span>
                         <span class="text-[10px] text-slate-400 uppercase tracking-widest block -mt-1">BARRIO EL TRIUNFO IBAGUE TOLIMA</span>
                     </div>
                 </a>
 
                 <!-- Desktop Nav Navigation -->
                 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                    <a href="comites.html" class="text-slate-300 hover:text-gold-400 transition-colors">comites 2027</a>
-                    <a href="#nosotros" class="text-slate-300 hover:text-gold-400 transition-colors">Nosotros</a>
-                    <a href="#servicios" class="text-slate-300 hover:text-gold-400 transition-colors">Servicios</a>
-                    <a href="#agenda" class="px-4 py-2 rounded-full bg-gold-500/10 text-gold-400 border border-gold-500/30 hover:bg-gold-500 hover:text-navy-900 transition-all font-semibold flex items-center space-x-2">
-                        <i class="fa-regular fa-calendar-days"></i>
-                        <span>Agenda Virtual</span>
-                    </a>
+                    <a href="comites.html" class="text-slate-300 hover:text-amber-400 transition-colors">Comités 2027</a>
+                    <a href="#nosotros" class="text-slate-300 hover:text-amber-400 transition-colors">Nosotros</a>
+                    <a href="#servicios" class="text-slate-300 hover:text-amber-400 transition-colors">Servicios</a>
+                    
+                    <!-- Botón Destacado con Efecto Border Beam -->
+                    <div class="glow-border-wrapper shadow-lg shadow-amber-500/10">
+                        <div class="glow-border-beam"></div>
+                        <a href="#agenda" class="relative z-10 px-5 py-2.5 rounded-full bg-navy-900 text-amber-300 hover:text-white transition-all font-semibold flex items-center space-x-2">
+                            <i class="fa-regular fa-calendar-days text-amber-400"></i>
+                            <span>Agenda Virtual</span>
+                        </a>
+                    </div>
+
                     <!-- Botón de Acceso Administrador -->
-                    <button @click="openAdminLoginModal()" class="text-xs px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5" title="Panel Administrador">
-                        <i class="fa-solid fa-lock text-gold-400"></i>
+                    <button @click="openAdminLoginModal()" class="text-xs px-3 py-2.5 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-300 transition flex items-center gap-1.5" title="Panel Administrador">
+                        <i class="fa-solid fa-lock text-amber-400"></i>
                         <span x-text="isAdmin ? 'Modo Admin (Activo)' : 'Admin'"></span>
                     </button>
                 </nav>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center gap-2">
-                    <button @click="openAdminLoginModal()" class="p-2 text-gold-400" title="Admin">
+                    <button @click="openAdminLoginModal()" class="p-2 text-amber-400" title="Admin">
                         <i class="fa-solid fa-lock"></i>
                     </button>
                     <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-slate-300 hover:text-white focus:outline-none p-2">
@@ -114,16 +150,32 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation Drawer -->
-        <div x-show="mobileMenuOpen" x-cloak x-transition class="md:hidden bg-navy-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
-            <a href="comites.html" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">comites 2027</a>
+       <!-- Mobile Navigation Drawer -->
+        <div x-show="mobileMenuOpen" x-cloak x-transition class="md:hidden bg-navy-900 border-b border-slate-800 px-4 pt-4 pb-6 space-y-3">
+            <a href="comites.html" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Comités 2027</a>
             <a href="#nosotros" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Nosotros</a>
             <a href="#servicios" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Servicios</a>
-            <a href="dow.html" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-gold-400 bg-gold-500/10 border border-gold-500/20">Agenda Virtual</a>
-            <a href="#nosotros" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Descarga la app</a>
+            
+            <!-- Botón móvil de Agenda Virtual con diseño elegante y sin desbordes -->
+            <div class="pt-2">
+                <a href="#agenda" @click="mobileMenuOpen = false" class="w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-full bg-gradient-to-r from-amber-500/20 to-amber-400/10 text-amber-300 border border-amber-500/50 hover:bg-amber-500 hover:text-navy-900 transition-all font-semibold shadow-lg shadow-amber-500/10">
+                    <i class="fa-regular fa-calendar-days text-amber-400"></i>
+                    <span>Agenda Virtual</span>
+                </a>
+            </div>
+
+            <button @click="mobileMenuOpen = false; openAdminLoginModal()" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 flex items-center gap-2 pt-2">
+                <i class="fa-solid fa-lock text-amber-400"></i> Panel Administrador
+            </button>
+        </div>
+
+            <button @click="mobileMenuOpen = false; openAdminLoginModal()" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 flex items-center gap-2 pt-2">
+                <i class="fa-solid fa-lock text-amber-400"></i> Panel Administrador
+            </button>
+        </div>
 
             <button @click="mobileMenuOpen = false; openAdminLoginModal()" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 flex items-center gap-2">
-                <i class="fa-solid fa-lock text-gold-400"></i> Panel Administrador
+                <i class="fa-solid fa-lock text-amber-400"></i> Panel Administrador
             </button>
         </div>
     </header>
@@ -140,17 +192,17 @@
                     <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                         
                         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-serif leading-tight">
-                           Bienvenido a nuestra  <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-amber-200">APP</span>
+                           Bienvenido a nuestra <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-100">APP</span>
                         </h1>
 
-                        <h5 class="text-1xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight font-serif leading-tight">
-                          aqui  encuentras la programacion para el año   <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-amber-200">2027</span>
+                        <h5 class="text-xl sm:text-2xl font-semibold tracking-tight font-sans text-slate-300">
+                          Aquí encuentras la programación para el año <span class="text-amber-400 font-bold">2027</span>
                         </h5>
-                        <p class="text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-                         mirad ¡Ved qué bueno y agradable esque los hermanos vivan unidos y en armonia! salmo 133:1
+                        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light italic">
+                          "¡Ved qué bueno y qué delicioso es habitar los hermanos juntos en armonía!" <span class="not-italic text-amber-400 font-medium">— Salmo 133:1</span>
                         </p>
                         <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <a href="#agenda" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-navy-900 font-bold hover:shadow-lg hover:shadow-gold-500/25 transition-all transform hover:-translate-y-0.5">
+                            <a href="#agenda" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-navy-900 font-bold hover:shadow-lg hover:shadow-amber-500/25 transition-all transform hover:-translate-y-0.5">
                                 <i class="fa-solid fa-calendar-check mr-2"></i> Acceder a la Agenda
                             </a>
                             <a href="#nosotros" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-800/50 hover:bg-slate-800 text-slate-200 font-medium transition-all">
@@ -170,108 +222,164 @@
             </div>
         </section>
 
-        <!-- 2. NOSOTROS SECTION -->
-        <section id="nosotros" class="py-20 bg-white">
+        <!-- 2. NOSOTROS SECTION (MEJORADA CON IMÁGENES TIPO LOGO EN LUGAR DE ICONOS) -->
+        <section id="nosotros" class="py-24 bg-slate-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h3 class="text-xs uppercase tracking-widest text-gold-600 font-semibold mb-2">Sobre Nosotros</h3>
-                    <p class="text-3xl sm:text-4xl font-bold font-serif text-navy-800">Seguimos con los ojos puestos en Jesús el Autor y Consumador de la fe</p>
-                    <div class="w-16 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+                    <span class="text-xs uppercase tracking-widest text-amber-600 font-bold mb-2 block">NOSOTROS</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif text-navy-900">Seguimos con los ojos puestos en Jesús el Autor y Consumador de la fe</h2>
+                    <div class="w-20 h-1.5 bg-amber-500 mx-auto mt-4 rounded-full"></div>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
+                    
                     <!-- Misión -->
-                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full pointer-events-none"></div>
                         <div>
-                            <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                    <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
-                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8"/>
-                                    <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-                                </svg>
+                            <!-- Imagen tipo logo/emblema en lugar de icono plano -->
+                            <div class="w-16 h-16 rounded-2xl bg-navy-900 p-2.5 shadow-md mb-6 group-hover:scale-105 transition-transform flex items-center justify-center border border-amber-500/30">
+                                <img src="mision.png" alt="Misión Logo" class="w-full h-full object-contain filter drop-shadow">
                             </div>
-                            <h3 class="text-xl font-bold text-navy-800 mb-3">Misión</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                • Predicación y evangelización: Anunciar a Jesucristo como el único Dios verdadero y Salvador.<br>
-                                • Hacer discípulos: Bautizar a los creyentes y enseñarles a guardar los mandamientos de Jesús.<br>
-                                • Enseñanza doctrinal: Instruir a la feligresía en la doctrina apostólica.<br>
-                                • Formación integral: Preparar a ministros y creyentes para presentar una iglesia santa.<br>
-                                • Expansión misionera: Consolidar la obra en Colombia y en el campo extranjero.
+                            <h3 class="text-2xl font-bold font-serif text-navy-900 mb-4">Misión</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed space-y-2">
+                                • <strong>Predicación y evangelización:</strong> Anunciar a Jesucristo como el único Dios verdadero y Salvador.<br>
+                                • <strong>Hacer discípulos:</strong> Bautizar a los creyentes y enseñarles a guardar los mandamientos de Jesús.<br>
+                                • <strong>Enseñanza doctrinal:</strong> Instruir a la feligresía en la doctrina apostólica.<br>
+                                • <strong>Formación integral:</strong> Preparar a ministros y creyentes para presentar una iglesia santa.<br>
+                                • <strong>Expansión misionera:</strong> Consolidar la obra en Colombia y en el extranjero.
                             </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-semibold text-amber-600">
+                            <span>Propósito Divino</span>
                         </div>
                     </div>
 
                     <!-- Visión -->
-                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full pointer-events-none"></div>
                         <div>
-                            <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                                </svg>
+                            <!-- Imagen tipo logo/emblema en lugar de icono plano -->
+                            <div class="w-16 h-16 rounded-2xl bg-navy-900 p-2.5 shadow-md mb-6 group-hover:scale-105 transition-transform flex items-center justify-center border border-amber-500/30">
+                                <img src="vision.png" alt="Visión Logo" class="w-full h-full object-contain filter drop-shadow">
                             </div>
-                            <h3 class="text-xl font-bold text-navy-800 mb-3">Visión</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                • Expansión y crecimiento: Ser reconocida por la propagación del evangelio.<br>
-                                • Unidad espiritual: Conservar la unidad de la fe y del espíritu.<br>
-                                • Formación de discípulos: Llenos del Espíritu Santo y preparados para toda buena obra.<br>
-                                • Transformación integral: Influir positivamente en el ser humano.<br>
-                                • Capacidad administrativa: Mantener alta eficiencia en todas sus áreas eclesiales.
+                            <h3 class="text-2xl font-bold font-serif text-navy-900 mb-4">Visión</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed space-y-2">
+                                • <strong>Expansión y crecimiento:</strong> Ser reconocida por la propagación constante del evangelio.<br>
+                                • <strong>Unidad espiritual:</strong> Conservar la unidad de la fe y del espíritu en el vínculo de paz.<br>
+                                • <strong>Formación de discípulos:</strong> Hombres y mujeres llenos del Espíritu Santo.<br>
+                                • <strong>Transformación integral:</strong> Influir positivamente en la sociedad.<br>
+                                • <strong>Capacidad administrativa:</strong> Alta eficiencia en todas las áreas eclesiales.
                             </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-semibold text-amber-600">
+                            <span>Futuro Ministerial</span>
                         </div>
                     </div>
 
                     <!-- Valores -->
-                    <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full pointer-events-none"></div>
                         <div>
-                            <div class="w-14 h-14 rounded-xl bg-navy-900 text-gold-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6zm11.386 3.785-1.806-2.41-.776 2.413zm-3.633.004.961-2.989H4.186l.963 2.989zM5.47 5.495 8 13.366l2.532-7.876zm-1.371-.999-.78-2.422-1.818 2.425zM1.499 5.5l5.113 6.817-2.192-6.82zm7.889 6.817 5.123-6.83H12.93l-2.193 6.832z"/>
-                                </svg>
+                            <!-- Imagen tipo logo/emblema en lugar de icono plano -->
+                            <div class="w-16 h-16 rounded-2xl bg-navy-900 p-2.5 shadow-md mb-6 group-hover:scale-105 transition-transform flex items-center justify-center border border-amber-500/30">
+                                <img src="valores.png" alt="Valores Logo" class="w-full h-full object-contain filter drop-shadow">
                             </div>
-                            <h3 class="text-xl font-bold text-navy-800 mb-3">Valores</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                • La autoridad de la Biblia como regla de fe.<br>
-                                • La Unicidad de Dios manifestado en carne como Jesucristo.<br>
-                                • La Salvación por gracia mediante arrepentimiento y bautismo.<br>
-                                • Santidad, costumbres y principios morales firmes.<br>
-                                • Vida comunitaria, amor al prójimo y apoyo familiar.
+                            <h3 class="text-2xl font-bold font-serif text-navy-900 mb-4">Valores</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed space-y-2">
+                                • <strong>La autoridad de la Biblia:</strong> Única regla infalible de fe y conducta.<br>
+                                • <strong>La Unicidad de Dios:</strong> Manifestado en carne como nuestro Señor Jesucristo.<br>
+                                • <strong>La Salvación:</strong> Por gracia mediante arrepentimiento y bautismo bíblico.<br>
+                                • <strong>Santidad y costumbres:</strong> Práctica de una vida moral consagrada.<br>
+                                • <strong>Vida comunitaria:</strong> Amor al prójimo y apoyo familiar integral.
                             </p>
                         </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-semibold text-amber-600">
+                            <span>Principios Fundamentales</span>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
         <!-- 3. SERVICIOS SECTION -->
-        <section id="servicios" class="py-20 bg-slate-100/70 border-t border-b border-slate-200">
+        <section id="servicios" class="py-20 bg-white border-t border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <p class="text-3xl sm:text-4xl font-bold font-serif text-navy-800">Servicios y Áreas de la Iglesia</p>
-                    <div class="w-16 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif text-navy-900"> Áreas de la Iglesia</h2>
+                    <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- 3. SERVICIOS SECTION -->
+        <section id="servicios" class="py-20 bg-white border-t border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif text-navy-900">Servicios y Áreas de la Iglesia</h2>
+                    <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
                 </div>
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
+                    <!-- Reuniones -->
+                    <div class="bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
                         <img src="3.png" alt="Reuniones" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Reuniones';">
                         <div class="p-6">
                             <h4 class="font-bold text-lg text-navy-900 mb-2">REUNIONES</h4>
                             <p class="text-slate-600 text-sm">Celebración de reuniones semanales de adoración, alabanza, predicación y enseñanza bíblica.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
+
+                    <!-- Bienestar Familiar -->
+                    <div class="bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
                         <img src="5.png" alt="Bienestar" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Bienestar';">
                         <div class="p-6">
                             <h4 class="font-bold text-lg text-navy-900 mb-2">BIENESTAR FAMILIAR</h4>
                             <p class="text-slate-600 text-sm">Actividades enfocadas en la edificación, restauración y unidad del núcleo familiar.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
+
+                    <!-- Expansión -->
+                    <div class="bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
                         <img src="4.png" alt="Expansión" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Expansion';">
                         <div class="p-6">
                             <h4 class="font-bold text-lg text-navy-900 mb-2">EXPANSIÓN</h4>
                             <p class="text-slate-600 text-sm">Enfocados en el cumplimiento de la misión evangelística y la predicación del evangelio.</p>
+                        </div>
+                    </div>
+
+                    <!-- Damas -->
+                    <div class="bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
+                        <img src="damas.png" alt="Damas" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Damas';">
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg text-navy-900 mb-2">DAMAS (SOCIEDAD DE DORCAS)</h4>
+                            <p class="text-slate-600 text-sm">Espacios de oración, ayuno y comunión enfocados en el liderazgo espiritual y obra social de la mujer.</p>
+                        </div>
+                    </div>
+
+                    <!-- Niños -->
+                    <div class="bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
+                        <img src="niños.png" alt="Niños" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Ninos';">
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg text-navy-900 mb-2">ESCUELA DOMINICAL / NIÑOS</h4>
+                            <p class="text-slate-600 text-sm">Enseñanza bíblica creativa y formación en valores cristianos para guiar a los más pequeños en la fe.</p>
+                        </div>
+                    </div>
+
+                    <!-- Músicos -->
+                    <div class="bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition">
+                        <img src="musica.png" alt="Músicos" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Musicos';">
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg text-navy-900 mb-2">MÚSICOS Y CORO</h4>
+                            <p class="text-slate-600 text-sm">Ministerio de alabanza y adoración encargado de exaltar el nombre del Señor a través de la música y el canto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Oración -->
+                    <div class="bg-slate-50 rounded-2xl overflow-hidden shadow-sm border border-slate-200/80 hover:shadow-md transition sm:col-span-2 lg:col-span-3 max-w-md mx-auto w-full">
+                        <img src="oracion.png" alt="Oración" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B192C/FFF?text=Oracion';">
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg text-navy-900 mb-2">MINISTERIO DE ORACIÓN</h4>
+                            <p class="text-slate-600 text-sm">Vigilias, cadenas de intercesión y momentos dedicados a buscar el respaldo y la dirección de Dios en unidad.</p>
                         </div>
                     </div>
                 </div>
@@ -293,16 +401,16 @@
                     <div class="flex flex-col sm:flex-row items-center gap-3">
                         <div class="relative w-full sm:w-64">
                             <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                            <input type="text" x-model="searchQuery" placeholder="Buscar eventos..." class="w-full bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm text-slate-200 placeholder-slate-400 focus:outline-none focus:border-gold-500 transition">
+                            <input type="text" x-model="searchQuery" placeholder="Buscar eventos..." class="w-full bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm text-slate-200 placeholder-slate-400 focus:outline-none focus:border-amber-400 transition">
                         </div>
                         
-                        <!-- Botones de Administrador (Solo visibles si isAdmin es true) -->
+                        <!-- Botones de Administrador -->
                         <template x-if="isAdmin">
                             <div class="flex gap-2 w-full sm:w-auto">
-                                <button @click="openModalForNewEvent()" class="bg-gradient-to-r from-gold-500 to-amber-500 text-navy-900 font-bold px-4 py-2 rounded-xl text-sm hover:brightness-110 transition flex items-center justify-center gap-2 shadow-lg">
+                                <button @click="openModalForNewEvent()" class="bg-gradient-to-r from-amber-400 to-amber-500 text-navy-900 font-bold px-4 py-2 rounded-xl text-sm hover:brightness-110 transition flex items-center justify-center gap-2 shadow-lg">
                                     <i class="fa-solid fa-plus"></i> Nuevo
                                 </button>
-                                <button @click="exportEventsJson()" class="bg-slate-800 border border-slate-700 text-amber-400 hover:bg-slate-700 px-3 py-2 rounded-xl text-sm font-semibold flex items-center gap-1" title="Descargar eventos.json para tu hosting">
+                                <button @click="exportEventsJson()" class="bg-slate-800 border border-slate-700 text-amber-400 hover:bg-slate-700 px-3 py-2 rounded-xl text-sm font-semibold flex items-center gap-1" title="Descargar eventos.json">
                                     <i class="fa-solid fa-download"></i> JSON
                                 </button>
                                 <button @click="logoutAdmin()" class="bg-rose-500/20 text-rose-300 border border-rose-500/30 px-3 py-2 rounded-xl text-sm" title="Salir de Admin">
@@ -326,7 +434,7 @@
                                 </button>
                             </div>
 
-                            <!-- Dropdown de Meses (Enero a Diciembre) -->
+                            <!-- Dropdown de Meses -->
                             <select x-model.number="currentMonth" @change="renderCalendar()" class="bg-slate-900 text-amber-300 font-bold text-lg rounded-xl border border-slate-700 px-4 py-2 focus:outline-none cursor-pointer">
                                 <template x-for="(monthName, index) in months" :key="index">
                                     <option :value="index" x-text="monthName"></option>
@@ -379,7 +487,6 @@
                                         :class="day.isToday ? 'bg-amber-400 text-navy-900 font-bold' : 'text-slate-300'"
                                         x-text="day.dayNumber">
                                     </span>
-                                    <!-- Botón rápido en celda solo si es Admin -->
                                     <template x-if="isAdmin">
                                         <button 
                                             @click.stop="openModalForDay(day)" 
@@ -390,7 +497,6 @@
                                     </template>
                                 </div>
 
-                                <!-- Event Badges List in Cell -->
                                 <div class="mt-2 space-y-1 overflow-y-auto max-h-16 custom-scrollbar">
                                     <template x-for="event in getEventsForDay(day.dateString)" :key="event.id">
                                         <div 
@@ -451,13 +557,12 @@
                 <p class="text-xs text-slate-500 mt-1">Ibagué, Tolima © 2027. Todos los derechos reservados.</p>
             </div>
             <div class="flex space-x-6 text-slate-400">
-                <a href="https://www.facebook.com/IpucTriunfoIbague8" class="hover:text-amber-400 transition"><i class="fa-brands fa-facebook text-lg"></i></a>
-                
+                <a href="https://www.facebook.com/IpucTriunfoIbague8" target="_blank" class="hover:text-amber-400 transition"><i class="fa-brands fa-facebook text-lg"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL DE ACCESO ADMINISTRADOR (LOGIN) -->
+    <!-- MODAL DE ACCESO ADMINISTRADOR -->
     <div x-show="showAdminLogin" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div @click="showAdminLogin = false" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity"></div>
@@ -472,9 +577,9 @@
                 <form @submit.prevent="verifyAdminPassword()" class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Contraseña de Administrador</label>
-                        <input type="password" x-model="adminPasswordInput" required placeholder="Digite su clave" class="w-full bg-slate-850 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-amber-400">
+                        <input type="password" x-model="adminPasswordInput" required placeholder="Digite su clave" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-slate-100 text-sm focus:outline-none focus:border-amber-400">
                     </div>
-                    <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-navy-900 font-bold text-sm hover:brightness-110 transition">
+                    <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-navy-900 font-bold text-sm hover:brightness-110 transition">
                         Entrar al Panel
                     </button>
                 </form>
@@ -482,7 +587,7 @@
         </div>
     </div>
 
-    <!-- MODAL PARA GESTIÓN DE EVENTOS (CREAR / EDITAR - SOLO ADMIN) -->
+    <!-- MODAL PARA GESTIÓN DE EVENTOS -->
     <div x-show="showEventModal" x-cloak class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div @click="closeModal()" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity"></div>
@@ -490,11 +595,10 @@
 
             <div class="inline-block align-bottom bg-slate-900 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-slate-700">
                 <div class="bg-slate-800/80 px-6 py-4 border-b border-slate-700 flex justify-between items-center">
-                    <h3 class="text-lg font-bold text-white" x-text="activeEvent.id ? 'eventos ' : 'Nuevo Evento Institucional'"></h3>
+                    <h3 class="text-lg font-bold text-white" x-text="activeEvent.id ? 'Editar Evento' : 'Nuevo Evento Institucional'"></h3>
                     <button @click="closeModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
                 </div>
 
-                <!-- Si es admin, ve el formulario editable. Si no, solo ve la información de lectura -->
                 <template x-if="isAdmin">
                     <form @submit.prevent="saveEvent()" class="p-6 space-y-4">
                         <div>
@@ -516,19 +620,11 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Categoría</label>
                             <select x-model="activeEvent.category" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-slate-100 text-sm focus:outline-none">
-                                <option value="Reunión">culto</option>
-                                <option value="Institucional">Integracion</option>
+                                <option value="Reunión">Culto</option>
+                                <option value="Institucional">Integración</option>
                                 <option value="Capacitación">Capacitación</option>
-                                <option value="Recordatorio">confraternidad</option>
-                                <option value="Urgente">culto misionero</option>
-                                <option value="Urgente">gavillas</option>
-                                <option value="Urgente">rayos de luz</option>
-                                <option value="Urgente">dia misionero</option>
-                                <option value="Urgente">ofrenda especial</option>
-                                <option value="Urgente">asamblea general</option>
-                                <option value="Urgente">evento importante</option>
-                                <option value="Urgente">escuela dominical</option>
-                                
+                                <option value="Recordatorio">Confraternidad</option>
+                                <option value="Urgente">Culto Misionero</option>
                             </select>
                         </div>
 
@@ -545,13 +641,12 @@
                             </template>
                             <div class="flex space-x-3 ml-auto">
                                 <button type="button" @click="closeModal()" class="px-4 py-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-xs font-bold">Cancelar</button>
-                                <button type="submit" class="px-5 py-2 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-navy-900 text-xs font-bold">Guardar</button>
+                                <button type="submit" class="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-navy-900 text-xs font-bold">Guardar</button>
                             </div>
                         </div>
                     </form>
                 </template>
 
-                <!-- Vista de Solo Lectura para Visitantes -->
                 <template x-if="!isAdmin">
                     <div class="p-6 space-y-4">
                         <div>
@@ -573,7 +668,7 @@
     </div>
 
     <!-- NOTIFICATION TOAST -->
-    <div x-show="toast.show" x-cloak x-transition class="fixed bottom-6 right-6 z-50 bg-navy-800 border border-gold-500/40 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3">
+    <div x-show="toast.show" x-cloak x-transition class="fixed bottom-6 right-6 z-50 bg-navy-800 border border-amber-500/40 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3">
         <i class="fa-solid fa-circle-check text-amber-400 text-lg"></i>
         <span class="text-sm font-medium" x-text="toast.message"></span>
     </div>
@@ -598,37 +693,33 @@
 
                 initApp() {
                     const today = new Date();
-                    this.currentYear = 2027; // Fijo para el año 2027 solicitado
+                    this.currentYear = 2027;
                     this.currentMonth = today.getFullYear() === 2027 ? today.getMonth() : 0;
                     this.loadEvents();
                     this.renderCalendar();
                 },
 
                 loadEvents() {
-    // Intentamos cargar primero desde el archivo eventos.json del servidor
-    fetch('eventos.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('No se pudo cargar el archivo eventos.json');
-            }
-            return response.json();
-        })
-        .then(data => {
-            this.events = data;
-            this.renderCalendar();
-        })
-        .catch(error => {
-            console.warn('Cargando desde localStorage como respaldo:', error);
-            // Si hay algún problema leyendo el JSON externo, recurre al almacenamiento local
-            const stored = localStorage.getItem('ipuc_agenda_2027_events');
-            if (stored) {
-                try { this.events = JSON.parse(stored); } catch (e) { this.events = []; }
-            } else {
-                this.events = [];
-            }
-            this.renderCalendar();
-        });
-},
+                    fetch('eventos.json')
+                        .then(response => {
+                            if (!response.ok) throw new Error('No se pudo cargar eventos.json');
+                            return response.json();
+                        })
+                        .then(data => {
+                            this.events = data;
+                            this.renderCalendar();
+                        })
+                        .catch(error => {
+                            console.warn('Cargando desde localStorage como respaldo:', error);
+                            const stored = localStorage.getItem('ipuc_agenda_2027_events');
+                            if (stored) {
+                                try { this.events = JSON.parse(stored); } catch (e) { this.events = []; }
+                            } else {
+                                this.events = [];
+                            }
+                            this.renderCalendar();
+                        });
+                },
 
                 saveEventsToStorage() {
                     localStorage.setItem('ipuc_agenda_2027_events', JSON.stringify(this.events));
@@ -644,7 +735,6 @@
                 },
 
                 verifyAdminPassword() {
-                    // Contraseña predeterminada de administrador (cámbiala si lo deseas)
                     if (this.adminPasswordInput === 'admin2027') {
                         this.isAdmin = true;
                         this.showAdminLogin = false;
@@ -819,15 +909,13 @@
             }
         }
 
-        
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Service Worker registrado con éxito', reg))
-        .catch(err => console.warn('Error al registrar Service Worker', err));
-    });
-  }
-
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registrado con éxito', reg))
+                    .catch(err => console.warn('Error al registrar Service Worker', err));
+            });
+        }
     </script>
 </body>
 </html>
