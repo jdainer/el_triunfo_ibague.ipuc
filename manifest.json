@@ -1,0 +1,24 @@
+{
+  "name": "IPUC Octava Sede Ibagué",
+  "short_name": "IPUC 8 Sede",
+  "description": "Aplicación oficial de la IPUC Octava Sede Barrio El Triunfo - Agenda Virtual y Comités 2027",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#030811",
+  "theme_color": "#0B192C",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
